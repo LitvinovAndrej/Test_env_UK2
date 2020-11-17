@@ -7,7 +7,7 @@ resource "azurerm_recovery_services_vault" "rec_serv_vault1" {
   location            = var.location1
   resource_group_name = azurerm_resource_group.myterraformgroup.name
   sku                 = "Standard"
-tags = {
+  tags = {
     CreatedBy       = var.CreatedBy
     ManagedServices = var.ManagedServices
     EnvironmentType = var.EnvironmentType
@@ -24,21 +24,21 @@ resource "azurerm_backup_policy_vm" "rec_serv_policy1" {
   timezone = "UTC"
 
   backup {
-    frequency = "weekly"
+    frequency = "Weekly"
     weekdays  = ["Saturday"]
     time      = "09:00"
   }
-  /*
+/*
   retention_daily {
     count = 10
   }
 */
   retention_weekly {
-    count    = 2
-    weekdays = ["Sunday"]
+    count    = 10
+    weekdays = ["Saturday"]
   }
-  /*
 
+/*
   retention_monthly {
     count    = 7
     weekdays = ["Sunday", "Wednesday"]

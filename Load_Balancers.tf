@@ -24,7 +24,7 @@ resource "azurerm_lb" "name1" {
     name                 = "r1-Frontend"
     public_ip_address_id = azurerm_public_ip.name7.id
   }
-tags = {
+  tags = {
     CreatedBy       = var.CreatedBy
     ManagedServices = var.ManagedServices
     EnvironmentType = var.EnvironmentType
