@@ -4,9 +4,11 @@ terraform {
 
 resource "azurerm_recovery_services_vault" "rec_serv_vault1" {
   name                = var.recovery_vault_name
-  location            = var.location1
+  location            = azurerm_resource_group.myterraformgroup.location
   resource_group_name = azurerm_resource_group.myterraformgroup.name
+  soft_delete_enabled = false
   sku                 = "Standard"
+
   tags = {
     CreatedBy       = var.CreatedBy
     ManagedServices = var.ManagedServices
@@ -17,28 +19,28 @@ resource "azurerm_recovery_services_vault" "rec_serv_vault1" {
 }
 
 resource "azurerm_backup_policy_vm" "rec_serv_policy1" {
-  name                = "rec_serv_policy1"
-  resource_group_name = azurerm_resource_group.myterraformgroup.name
-  recovery_vault_name = azurerm_recovery_services_vault.rec_serv_vault1.name
-
-  timezone = "UTC"
+  name                           = "rec-serv-policy1"
+  resource_group_name            = azurerm_resource_group.myterraformgroup.name
+  recovery_vault_name            = azurerm_recovery_services_vault.rec_serv_vault1.name
+  instant_restore_retention_days = "5"
+  timezone                       = "UTC"
 
   backup {
     frequency = "Weekly"
     weekdays  = ["Saturday"]
     time      = "09:00"
   }
-/*
+  /*
   retention_daily {
     count = 10
   }
-*/
+  */
   retention_weekly {
-    count    = 10
-    weekdays = ["Saturday"]
+    count    = 2
+    weekdays = ["Sunday"]
   }
 
-/*
+  /*
   retention_monthly {
     count    = 7
     weekdays = ["Sunday", "Wednesday"]
@@ -51,11 +53,11 @@ resource "azurerm_backup_policy_vm" "rec_serv_policy1" {
     weeks    = ["Last"]
     months   = ["January"]
   }
-*/
+  */
 }
-/*
-#ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT 
 
+#ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT 
+/*
 resource "azurerm_backup_protected_vm" "vm1_r1" {
   resource_group_name = azurerm_resource_group.myterraformgroup.name
   recovery_vault_name = azurerm_recovery_services_vault.rec_serv_vault1.name

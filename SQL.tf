@@ -25,6 +25,7 @@ resource "azurerm_sql_database" "name" {
   resource_group_name = azurerm_resource_group.myterraformgroup.name
   location            = var.location1
   server_name         = azurerm_sql_server.name.name
+  edition             = "Basic"
   /*
   extended_auditing_policy {
     storage_endpoint                        = azurerm_storage_account.example.primary_blob_endpoint
