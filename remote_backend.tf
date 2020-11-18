@@ -4,7 +4,7 @@ terraform {
     organization = "LRS"
 
     workspaces {
-      name = "Test_env_UK"
+      name = "Test_env_UK_2"
     }
   }
 }

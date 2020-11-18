@@ -1,3 +1,22 @@
+#Content:
+#Azure ID`s
+#Names
+#TAGS
+#Resource Group, location
+#Networking: 
+#   VNET REGION1
+#   VNET REGION2
+#   VNET REGION3
+#VPN r1
+#VPN r2
+#VPN r3
+#Recovery Services Vault
+#VM
+#VM SIZE
+#Storage Accounts
+#SQL server/database
+#OTHERS
+
 #Azure ID`s:
 variable "subscription_id" {
   description = "Please enter the SUBSCRIPTION ID for Azure in which you are planning to deploy in"
@@ -290,15 +309,7 @@ variable "data_sa_type" {
   default     = "Standard_LRS"
 }
 
-#TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS  #TAGS #TAGS #TAGS #TAGS #TAGS #TAGS
-variable "tags" {
-  type        = map(string)
-  description = "A map of the tags to use on the resources that are deployed with this module."
 
-  default = {
-    source = "terraform"
-  }
-}
 
 #SQL server/database #SQL server/database #SQL server/database #SQL server/database #SQL server/database #SQL server/database #SQL server/database #SQL server/database #SQL server/database 
 variable "sqlserver" {

@@ -53,7 +53,7 @@ resource "azurerm_backup_policy_vm" "rec_serv_policy1" {
   }
 */
 }
-
+/*
 #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT 
 
 resource "azurerm_backup_protected_vm" "vm1_r1" {
@@ -68,3 +68,4 @@ resource "azurerm_backup_protected_vm" "vm2_r1" {
   source_vm_id        = azurerm_virtual_machine.name2.id
   backup_policy_id    = azurerm_backup_policy_vm.rec_serv_policy1.id
 }
+*/
