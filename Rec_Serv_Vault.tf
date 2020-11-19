@@ -1,7 +1,7 @@
 terraform {
   required_version = "~>0.13.0"
 }
-
+# Recovery Service Vault
 resource "azurerm_recovery_services_vault" "rec_serv_vault1" {
   name                = var.recovery_vault_name
   location            = azurerm_resource_group.myterraformgroup.location
@@ -17,7 +17,7 @@ resource "azurerm_recovery_services_vault" "rec_serv_vault1" {
     ManagedServices = var.ManagedServices
   }
 }
-
+# Recovery Service policy for VMs
 resource "azurerm_backup_policy_vm" "recoverypolicy1" {
   name                           = "rec-serv-policy1"
   resource_group_name            = azurerm_resource_group.myterraformgroup.name
@@ -37,8 +37,7 @@ resource "azurerm_backup_policy_vm" "recoverypolicy1" {
   } 
 }
 
-#ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT #ASSIGNING VMs TO RECOVERY SERVICE VAULT 
-
+# VMs association to Recovery Service Policy
 resource "azurerm_backup_protected_vm" "vm1_r1" {
   resource_group_name = azurerm_resource_group.myterraformgroup.name
   recovery_vault_name = azurerm_recovery_services_vault.rec_serv_vault1.name
